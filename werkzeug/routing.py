@@ -1810,7 +1810,7 @@ class MapAdapter(object):
         method = (method or self.default_method).upper()
 
         path = u'%s|%s' % (
-            self.server_name if self.map.host_matching else self.subdomain,
+            self.map.host_matching and self.server_name or self.subdomain,
             path_info and '/%s' % path_info.lstrip('/')
         )
 

@@ -1025,7 +1025,7 @@ class Href(object):
                                 'can\'t be combined')
             query, path = path[-1], path[:-1]
         elif query:
-            query = dict([(k[:-1] if k.endswith('_') else k, v)
+            query = dict([(k.endswith('_') and k[:-1] or k, v)
                           for k, v in query.items()])
         path = '/'.join([to_unicode(url_quote(x, self.charset), 'ascii')
                          for x in path if x is not None]).lstrip('/')

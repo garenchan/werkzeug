@@ -339,7 +339,7 @@ class WSGIRequestHandler(BaseHTTPRequestHandler, object):
         """Send the response header and log the response code."""
         self.log_request(code)
         if message is None:
-            message = self.responses[code][0] if code in self.responses else ''
+            message = code in self.responses and self.responses[code][0] or ''
         if self.request_version != 'HTTP/0.9':
             hdr = "%s %d %s\r\n" % (self.protocol_version, code, message)
             self.wfile.write(hdr.encode('ascii'))
